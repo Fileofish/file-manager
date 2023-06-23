@@ -1,5 +1,5 @@
 import fs from "fs";
-import { showCurrentFolder } from "../../states/showCurrentFolder.mjs";
+import { showCurrentFolder } from "../../../shared/showCurrentFolder.mjs";
 
 export function up() {
   const currentPath = process.cwd();
