@@ -1,12 +1,17 @@
 import { exit } from "./exit/exit.mjs";
-import { up } from "./navigation/up.mjs"
-import { cd } from "./navigation/cd.mjs"
-import { ls } from "./navigation/ls.mjs"
-import { cat } from "./file/cat.mjs"
-import { add } from "./file/add.mjs"
-import { rn } from "./file/rn.mjs"
-import { cpMv } from "./file/cp-mv.mjs"
-import { rm } from "./file/rm.mjs"
+import { up } from "./navigation/up.mjs";
+import { cd } from "./navigation/cd.mjs";
+import { ls } from "./navigation/ls.mjs";
+import { cat } from "./file/cat.mjs";
+import { add } from "./file/add.mjs";
+import { rn } from "./file/rn.mjs";
+import { cpMv } from "./file/cp-mv.mjs";
+import { rm } from "./file/rm.mjs";
+import { getEOL } from "./CPU/EOL.mjs";
+import { getCpus } from "./CPU/cpus.mjs";
+import { getHomedir } from "./CPU/homedir.mjs";
+import { getUsername } from "./CPU/username.mjs";
+import { getCPUArchitecture } from "./CPU/architecture.mjs";
 
 export class Handler {
   constructor(username) {
@@ -23,7 +28,7 @@ export class Handler {
     process.stdin.on('data', (data) => {
       const input = data.toString().trim();
       const arrInput = input.split(' ');
-      const command = arrInput[0];
+      const command = (arrInput[0] === 'os') ? input : arrInput[0];
       const firstValue = (arrInput[1]) ? arrInput[1] : null;
       const secondValue = (arrInput[2]) ? arrInput[2] : null;
 
@@ -57,6 +62,21 @@ export class Handler {
           break;
         case 'rm':
           rm(firstValue);
+          break;
+        case 'os --EOL':
+          getEOL();
+          break;
+        case 'os --cpus':
+          getCpus();
+          break;
+        case 'os --homedir':
+          getHomedir();
+          break;
+        case 'os --username':
+          getUsername();
+          break;
+        case 'os --architecture':
+          getCPUArchitecture();
           break;
       }
 
