@@ -12,7 +12,7 @@ export async function getHashFile(filePath) {
     const fileHash = hash.update(fileData).digest('hex');
     console.log(`Hash for file '${fileName}' is '${fileHash}'.`);
     showCurrentFolder();
-  } catch (error) {
-    throw error;
+  } catch (err) {
+    console.log(`Operation failed: ${err.message}`);
   }
 }

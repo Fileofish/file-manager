@@ -2,14 +2,18 @@ import fs from 'fs';
 import { showCurrentFolder } from "../../../shared/showCurrentFolder.mjs";
 
 export function cat(pathToFile) {
-  const readableStream = fs.createReadStream(pathToFile);
+  try {
+    const readableStream = fs.createReadStream(pathToFile);
 
-  readableStream.on('data', (data) => {
-    process.stdout.write(data + '\n');
-    showCurrentFolder();
-  });
+    readableStream.on('data', (data) => {
+      process.stdout.write(data + '\n');
+      showCurrentFolder();
+    });
 
-  readableStream.on('err', (err) => {
+    readableStream.on('error', (err) => {
+      console.log(`Operation failed: ${err.message}`);
+    });
+  } catch (err) {
     console.log(`Operation failed: ${err.message}`);
-  });
+  }
 }

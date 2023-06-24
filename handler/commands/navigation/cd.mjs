@@ -4,16 +4,12 @@ import { showCurrentFolder } from '../../../shared/showCurrentFolder.mjs';
 export function cd(path) {
   const isWindows = process.platform === 'win32';
 
-  try {
-    if (isWindows) {
-      fs.accessSync(path);
+  fs.access(path, isWindows ? fs.constants.F_OK : fs.constants.R_OK, (err) => {
+    if (err) {
+      console.log(`Operation failed: ${err.message}`);
     } else {
-      fs.accessSync(path, 4);
+      process.chdir(path);
+      showCurrentFolder();
     }
-
-    process.chdir(path);
-    showCurrentFolder();
-  } catch (err) {
-    console.log(`Operation failed: ${err.message}`)
-  }
+  });
 }

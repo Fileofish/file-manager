@@ -91,6 +91,9 @@ export class Handler {
         case 'decompress':
           archiver.decompressFile(firstValue, secondValue);
           break;
+        default:
+          console.log('Invalid input');
+          break;
       }
 
     })
