@@ -12,6 +12,7 @@ import { getCpus } from "./CPU/cpus.mjs";
 import { getHomedir } from "./CPU/homedir.mjs";
 import { getUsername } from "./CPU/username.mjs";
 import { getCPUArchitecture } from "./CPU/architecture.mjs";
+import { getHashFile } from "./hash/hash.mjs";
 
 export class Handler {
   constructor(username) {
@@ -77,6 +78,9 @@ export class Handler {
           break;
         case 'os --architecture':
           getCPUArchitecture();
+          break;
+        case 'hash':
+          getHashFile(firstValue);
           break;
       }
 
