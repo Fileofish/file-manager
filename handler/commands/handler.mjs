@@ -13,6 +13,9 @@ import { getHomedir } from "./CPU/homedir.mjs";
 import { getUsername } from "./CPU/username.mjs";
 import { getCPUArchitecture } from "./CPU/architecture.mjs";
 import { getHashFile } from "./hash/hash.mjs";
+import { Archiver } from "./compress/archiver.mjs";
+
+const archiver = new Archiver();
 
 export class Handler {
   constructor(username) {
@@ -81,6 +84,12 @@ export class Handler {
           break;
         case 'hash':
           getHashFile(firstValue);
+          break;
+        case 'compress':
+          archiver.compressFile(firstValue, secondValue);
+          break;
+        case 'decompress':
+          archiver.decompressFile(firstValue, secondValue);
           break;
       }
 
