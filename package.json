@@ -1,0 +1,19 @@
+{
+  "name": "file-manager",
+  "version": "1.0.0",
+  "description": "An application for working with files written in node js as part of the RS training course School/NODE.JS (EN)",
+  "main": "index.mjs",
+  "scripts": {
+    "start": "node index.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Fileofish/file-manager.git"
+  },
+  "keywords": [
+    "nodeJS",
+    "ESM"
+  ],
+  "author": "Bukhryakov Oleg <oleg.b9113@gmail.com>",
+  "license": "ISC"
+}
